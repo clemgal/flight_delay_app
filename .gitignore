@@ -1,8 +1,10 @@
 #datafiles
 
-app_venv/
+.appli_venv
 .vscode
 src/__pycache__
 
 data/
 *.csv
+
+*.html

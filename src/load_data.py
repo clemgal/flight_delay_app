@@ -1,21 +1,31 @@
+from pathlib import Path
 import pandas as pd
 import kagglehub
-from pathlib import Path
 
 
-def load_dataset(
-    dataset: str = "abdelazizel7or/airline-delay-cause",
-    filename: str = "airline_delay_cause.csv",
-    ) -> pd.DataFrame:
+def load_dataset() -> pd.DataFrame:
     """
-    Download (if needed) and load the airline delay dataset.
+    Download (if needed) and load the airline delay dataset from Kaggle.
+    Uses KaggleHub caching automatically.
     """
-    download_path = Path(kagglehub.dataset_download(dataset))
-    csv_path = download_path / filename
-    return pd.read_csv(csv_path)
+    # 1. Download / get cached dataset folder
+    dataset_dir = Path(
+        kagglehub.dataset_download("sriharshaeedala/airline-delay")
+    )
 
+    # 2. Find CSV files inside (recursively)
+    csv_files = list(dataset_dir.rglob("*.csv"))
 
-if __name__ == "__main__":
-    print("Running load_data.py directly...")
-    df = load_dataset()
-    print(df.head())
+    if not csv_files:
+        raise FileNotFoundError(
+            f"No CSV files found in Kaggle dataset folder: {dataset_dir}"
+        )
+
+    if len(csv_files) > 1:
+        raise ValueError(
+            "Multiple CSV files found. Be explicit.\n"
+            + "\n".join(str(p.relative_to(dataset_dir)) for p in csv_files)
+        )
+
+    # 3. Load the only CSV
+    return pd.read_csv(csv_files[0])
