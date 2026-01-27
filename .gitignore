@@ -4,6 +4,8 @@
 .vscode
 src/__pycache__
 
+appli_try.ipynb
+
 data/
 *.csv
 
