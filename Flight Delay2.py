@@ -29,7 +29,8 @@ def get_data():
 
 df = get_data()
 
-st.title("✈️ Flight Delay Explorer")
+st.title("Flight Delay Explorer")
+
 st.caption("Select an airport + airline to explore delay rate and delay causes.")
 
 # ---- Sidebar controls ----
@@ -50,7 +51,7 @@ metric_choice = st.sidebar.radio(
     key="cause_metric_choice",
 )
 
-# ---- Filter (AND logic) ----
+# ---- Filter  ----
 filtered = df[
     (df["airport"] == selected_airport) &
     (df["carrier_name"] == selected_airline)
@@ -105,7 +106,7 @@ if "show_table" not in st.session_state:
 
 top_left, top_right = st.columns([3, 1])
 with top_left:
-    st.subheader("Delay causes breakdown")
+    st.subheader("See the main causes for delays")
     st.caption("Aggregated across the selected airport + airline.")
 
 with top_right:
@@ -113,14 +114,60 @@ with top_right:
     if st.button(f"Switch to {toggle_label}", use_container_width=True):
         st.session_state.show_table = not st.session_state.show_table
 
-if causes_df.empty or causes_df[value_label].sum() == 0:
-    st.info("No delay-cause data available for this selection.")
-else:
-    if st.session_state.show_table:
-        st.dataframe(causes_df, use_container_width=True, hide_index=True)
-    else:
-        st.bar_chart(causes_df.set_index("Cause")[value_label])
 
-# ---- Optional: details ----
-with st.expander("See filtered rows"):
-    st.dataframe(filtered.head(200), use_container_width=True)
+import altair as alt
+import time
+
+BAR_COLOR = "#14b8a6"
+
+def make_bar_chart(df_):
+    return (
+        alt.Chart(df_)
+        .mark_bar(
+            color=BAR_COLOR,
+            cornerRadiusTopLeft=6,
+            cornerRadiusTopRight=6,
+        )
+        .encode(
+            x=alt.X(
+                f"{value_label}:Q",
+                title=value_label,
+                axis=alt.Axis(labelFlush=False),
+            ),
+            y=alt.Y(
+                "Cause:N",
+                sort="-x",
+                title=None,
+                axis=alt.Axis(
+                    labelLimit=300,     # allow long labels
+                    labelFontSize=12,   # readable but compact
+                ),
+            ),
+            tooltip=[
+                "Cause:N",
+                alt.Tooltip(f"{value_label}:Q", format=",.0f"),
+            ],
+        )
+        .properties(
+            height=260,   # 👈 key: controls vertical spacing
+        )
+    )
+
+# ---- Animated render ----
+animate = st.sidebar.checkbox("Animate bars", value=True)
+
+placeholder = st.empty()
+
+if animate:
+    steps = 18         
+    duration = 0.6     
+    for i in range(1, steps + 1):
+        t = i / steps
+        anim_df = causes_df.copy()
+        anim_df[value_label] = anim_df[value_label] * t
+        placeholder.altair_chart(make_bar_chart(anim_df), use_container_width=True)
+        time.sleep(duration / steps)
+else:
+    placeholder.altair_chart(make_bar_chart(causes_df), use_container_width=True)
+
+
