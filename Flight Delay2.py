@@ -1,8 +1,33 @@
 import pandas as pd
 import streamlit as st
 from src.load_data import load_dataset
+from pathlib import Path
+import base64
 
 st.set_page_config(page_title="Flight Delay Explorer", layout="wide")
+
+# banner
+ROOT_DIR = Path(__file__).resolve().parent
+BANNER_PATH = ROOT_DIR / "assets" / "high-flying-plane.jpg"  
+
+with open(BANNER_PATH, "rb") as f:
+    banner_base64 = base64.b64encode(f.read()).decode()
+
+st.markdown(
+    f"""
+    <div style="
+        width: 100%;
+        height: 110px;
+        margin-bottom: 1rem;
+        border-radius: 14px;
+        overflow: hidden;
+    ">
+        <img src="data:assets/jpg;base64,{banner_base64}"
+             style="width:100%; height:100%; object-fit:cover;" />
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 # ---- Simple styling ----
 st.markdown(
