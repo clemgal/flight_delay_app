@@ -60,6 +60,7 @@ flight-delay-explorer/
 
 For this app, you need to pip install requirements.txt 
 
-
+```
+---
 
 The app was coded using the following best practices for Code Quality: use type hints in functions, write docstrings for all functions, follow PEP 8 style guide and use logging instead of print(). 
