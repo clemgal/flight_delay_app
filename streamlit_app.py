@@ -155,9 +155,9 @@ def render_intro_card() -> None:
         ">
             <h3 style="margin-top:0;"> Wondering if your flight might be delayed?</h3>
             <p style="margin-bottom:0.4rem;">
-                Flight Delay Explorer helps you understand how likely your flight is to be delayed.
+                Flight Delay Explorer helps you understand how likely your flight is to be delayed.</br>
                 By choosing your departure airport and airline, you can explore delay rates, total
-                flights, and the main reasons behind delays. Travel smarter, with data on your side.
+                flights, and the main reasons behind delays. </br> Travel smarter, with data on your side.
             </p>
         </div>
         """,
@@ -292,6 +292,7 @@ def render_animated_chart(
             use_container_width=True,
         )
         time.sleep(duration / steps)
+    st.caption("Data collected from 2013–2023")
 
 
 def render_footer() -> None:

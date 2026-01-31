@@ -1,30 +1,28 @@
-# flight_delay_app
-
 #  Flight Delay Explorer
 
-**Flight Delay Explorer** is an interactive Streamlit dashboard that helps users understand flight delays in the United States.  
-By selecting a **departure airport** and an **airline**, users can explore delay rates, total flights, and the main causes of delays—backed by real historical data.
+Flight Delay Explorer is an interactive Streamlit application that helps users understand domestic flight delays in the United States.  
+By selecting a departure airport and an airline, users can explore delay rates, total flights, and the main causes of delays, backed by real historical data (from 2013-2023).
 
-The goal of the app is to help travelers (and analysts) **travel smarter with data**.
+The goal of the app is to help travelers travel smarter with data.
 
 ---
 
 ## Features
 
--  Select an **airport + airline duo**
+-  Select an airport + airline duo
 -  Key Performance Indicators (KPIs):
   - Delay rate (≥ 15 minutes)
   - Total number of flights
   - Total number of delayed flights
--  Breakdown of **delay causes**:
+-  Breakdown of delay causes:
   - Airline issues
   - Weather
   - Air traffic / NAS
   - Security
   - Late inbound aircraft
--  Interactive **Altair bar chart** (counts or minutes)
+-  Interactive bar chart (counts or minutes)
 -  Optional animated chart rendering
--  Toggle between **chart view** and **table view**
+-  Toggle between chart view and table view
 -  Clean, modern UI with custom styling
 
 ---
@@ -48,7 +46,7 @@ flight-delay-explorer/
 │   └── high-flying-plane.jpg  
 │
 ├── data/
-│   └── ...                   
+│   └── ...    # only for local use                 
 │
 ├── notebooks/
 │   └── data_exploration.ipynb 
@@ -56,6 +54,12 @@ flight-delay-explorer/
 ├── requirements.txt
 ├── README.md
 ├── .gitignore
-└── .vscode/                   
+├── .vscode/  
+└──.appli_venv
+                 
 
 For this app, you need to pip install requirements.txt 
+
+
+
+The app was coded using the following best practices for Code Quality: use type hints in functions, write docstrings for all functions, follow PEP 8 style guide and use logging instead of print(). 
