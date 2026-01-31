@@ -64,3 +64,27 @@ For this app, you need to pip install requirements.txt
 ---
 
 The app was coded using the following best practices for Code Quality: use type hints in functions, write docstrings for all functions, follow PEP 8 style guide and use logging instead of print(). 
+
+# Flight Delay Explorer
+
+This project is a Streamlit application for exploring and analyzing flight delays.
+
+The app is fully dockerized, which guarantees that it runs the same way on Windows, macOS, and Linux.
+
+---
+
+## Run the app with Docker
+
+### Prerequisites
+- Docker installed  
+  - Windows / Mac: Docker Desktop  
+  - Linux: Docker Engine  
+
+---
+
+### Clone the repository
+
+```bash
+git clone https://github.com/clemgal/flight_delay_app.git
+cd flight_delay_app
+

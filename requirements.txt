@@ -8,3 +8,4 @@ haversine
 scipy
 kagglehub
 kaggle
+streamlit
