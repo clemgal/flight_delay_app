@@ -1,66 +1,82 @@
-#  Flight Delay Explorer
+# Flight Delay Explorer
 
-Flight Delay Explorer is an interactive Streamlit application that helps users understand domestic flight delays in the United States.  
-By selecting a departure airport and an airline, users can explore delay rates, total flights, and the main causes of delays, backed by real historical data (from 2013-2023).
+Flight Delay Explorer is an interactive Streamlit application designed to help users understand domestic flight delays in the United States.
 
-The goal of the app is to help travelers travel smarter with data.
+By selecting a departure airport and an airline, users can explore:
+- delay rates,
+- total flights,
+- delayed flights,
+- and the main causes of delays,  
+based on historical data covering 2013–2023.
+
+The goal of the application is to help travelers make smarter decisions using data.
+
+---
+
+## Live Demo (Public Access)
+
+The application is publicly deployed and accessible at:
+
+https://flight-delay-app-07ci.onrender.com
+
+### Note about the free hosting plan
+This app is hosted on Render (free tier).
+
+- If the application is inactive for some time, the service may spin down automatically
+- The first request after inactivity may take up to 30–60 seconds
+- After the initial load, the application runs normally
+
+This behavior is expected and does not indicate an error.
 
 ---
 
 ## Features
 
--  Select an airport + airline duo
--  Key Performance Indicators (KPIs):
+- Selection of an airport + airline pair
+- Key Performance Indicators (KPIs):
   - Delay rate (≥ 15 minutes)
   - Total number of flights
   - Total number of delayed flights
--  Breakdown of delay causes:
-  - Airline issues
-  - Weather
+- Breakdown of delay causes:
+  - Airline-related issues
+  - Weather conditions
   - Air traffic / NAS
   - Security
   - Late inbound aircraft
--  Interactive bar chart (counts or minutes)
--  Optional animated chart rendering
--  Toggle between chart view and table view
--  Clean, modern UI with custom styling
+- Interactive bar charts (counts or delay minutes)
+- Optional animated chart rendering
+- Toggle between chart view and table view
+- Clean, modern UI with custom styling
 
 ---
 
-##  Project Structure
+## Project Structure
 
 ```text
-flight-delay-explorer/
+flight_delay_app/
 │
-├── app.py                     
+├── streamlit_app.py
 │
 ├── pages/
-│   └── 1_Airport_Glossary.py  
+│   └── 1_Airport_Glossary.py
 │
 ├── src/
 │   ├── __init__.py
-│   ├── load_data.py           
-│   └── processing.py          
+│   ├── load_data.py
+│   └── processing.py
 │
 ├── assets/
-│   └── high-flying-plane.jpg  
-│
-├── data/
-│   └── ...    # only for local use                 
+│   └── high-flying-plane.jpg
 │
 ├── notebooks/
-│   └── data_exploration.ipynb 
+│   └── data_exploration.ipynb
 │
 ├── requirements.txt
+├── Dockerfile
+├── .dockerignore
 ├── README.md
-├── .gitignore
-├── .vscode/  
-└──.appli_venv
-                 
+└── .gitignore
 
-For this app, you need to pip install requirements.txt 
-
-```
 ---
 
 The app was coded using the following best practices for Code Quality: use type hints in functions, write docstrings for all functions, follow PEP 8 style guide and use logging instead of print(). 
@@ -78,7 +94,13 @@ The app is fully dockerized, which guarantees that it runs the same way on Windo
 ### Prerequisites
 - Docker installed  
   - Windows / Mac: Docker Desktop  
-  - Linux: Docker Engine  
+  - Linux: Docker Engine
+
+## Build the Docker image
+docker build -t flight-delay-app .
+
+## Open the app locally
+http://localhost:8502
 
 ---
 
@@ -87,4 +109,5 @@ The app is fully dockerized, which guarantees that it runs the same way on Windo
 ```bash
 git clone https://github.com/clemgal/flight_delay_app.git
 cd flight_delay_app
+
 
