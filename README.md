@@ -81,7 +81,7 @@ flight_delay_app/
 
 The app was coded using the following best practices for Code Quality: use type hints in functions, write docstrings for all functions, follow PEP 8 style guide and use logging instead of print(). 
 
-# Flight Delay Explorer
+## Flight Delay Explorer
 
 This project is a Streamlit application for exploring and analyzing flight delays.
 
@@ -109,5 +109,3 @@ http://localhost:8502
 ```bash
 git clone https://github.com/clemgal/flight_delay_app.git
 cd flight_delay_app
-
-
