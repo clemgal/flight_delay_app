@@ -8,4 +8,5 @@ haversine
 scipy
 kagglehub
 kaggle
-streamlit
+streamlit>=1.23
+altair>=5
