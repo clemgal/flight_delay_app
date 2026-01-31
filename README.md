@@ -76,17 +76,7 @@ flight_delay_app/
 ├── .dockerignore
 ├── README.md
 └── .gitignore
-
----
-
-The app was coded using the following best practices for Code Quality: use type hints in functions, write docstrings for all functions, follow PEP 8 style guide and use logging instead of print(). 
-
-## Flight Delay Explorer
-
-This project is a Streamlit application for exploring and analyzing flight delays.
-
-The app is fully dockerized, which guarantees that it runs the same way on Windows, macOS, and Linux.
-
+```
 ---
 
 ## Run the app with Docker
@@ -96,10 +86,13 @@ The app is fully dockerized, which guarantees that it runs the same way on Windo
   - Windows / Mac: Docker Desktop  
   - Linux: Docker Engine
 
-## Build the Docker image
+### Build the Docker image
 docker build -t flight-delay-app .
 
-## Open the app locally
+### Run the application
+docker run --rm -p 8502:8501 flight-delay-app
+
+### Open the app locally
 http://localhost:8502
 
 ---
